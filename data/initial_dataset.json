@@ -1,0 +1,210 @@
+{
+  "Action-Adventure": [
+    "The Da Vinci Code",
+    "Angels & Demons",
+    "Treasure Island",
+    "The Lost City of Z",
+    "The Three Musketeers",
+    "The Bourne Identity",
+    "The Hunt for Red October",
+    "Life of Pi",
+    "Shogun",
+    "Ready Player One",
+    "The Martian",
+    "The Count of Monte Cristo",
+    "The Hunger Games",
+    "Jurassic Park",
+    "The Maze Runner"
+  ],
+
+  "Crime-Thriller-Mystery": [
+    "Gone Girl",
+    "The Girl with the Dragon Tattoo",
+    "The Silent Patient",
+    "The Woman in the Window",
+    "Big Little Lies",
+    "The Reversal",
+    "Sharp Objects",
+    "The Da Vinci Code",
+    "The Cuckoo's Calling",
+    "And Then There Were None",
+    "The Murder of Roger Ackroyd",
+    "The Snowman",
+    "Shutter Island",
+    "Killing Floor",
+    "The Girl on the Train"
+  ],
+
+  "Fantasy": [
+    "The Name of the Wind",
+    "Mistborn",
+    "The Way of Kings",
+    "A Game of Thrones",
+    "The Hobbit",
+    "Harry Potter and the Philosopher's Stone",
+    "The Lies of Locke Lamora",
+    "The Priory of the Orange Tree",
+    "Six of Crows",
+    "The Poppy War",
+    "The Night Circus",
+    "The Cruel Prince",
+    "Fourth Wing",
+    "Shadow and Bone",
+    "Good Omens"
+  ],
+
+  "Historical Fiction": [
+    "The Nightingale",
+    "All the Light We Cannot See",
+    "The Book Thief",
+    "The Tattooist of Auschwitz",
+    "The Help",
+    "The Kite Runner",
+    "A Thousand Splendid Suns",
+    "The Pillars of the Earth",
+    "The Guernsey Literary and Potato Peel Pie Society",
+    "Wolf Hall",
+    "The Alice Network",
+    "The Paris Library",
+    "The Boy in the Striped Pajamas",
+    "Hamnet",
+    "Lessons in Chemistry"
+  ],
+
+  "Horror": [
+    "The Shining",
+    "IT",
+    "The Haunting of Hill House",
+    "Bird Box",
+    "The Exorcist",
+    "The Girl Next Door",
+    "House of Leaves",
+    "The Cabin at the End of the World",
+    "Misery",
+    "Pet Sematary",
+    "The Silent Companions",
+    "Dracula",
+    "Mexican Gothic",
+    "The Troop",
+    "Coraline"
+  ],
+
+  "Romance": [
+    "The Fault in Our Stars",
+    "The Notebook",
+    "Me Before You",
+    "The Love Hypothesis",
+    "It Ends With Us",
+    "Outlander",
+    "Crazy Rich Asians",
+    "The Seven Husbands of Evelyn Hugo",
+    "Beach Read",
+    "People We Meet on Vacation",
+    "Book Lovers",
+    "One Last Stop",
+    "The Unhoneymooners",
+    "Red, White & Royal Blue",
+    "The Spanish Love Deception"
+  ],
+
+  "Science Fiction": [
+    "Dune",
+    "Ender's Game",
+    "Neuromancer",
+    "Foundation",
+    "Snow Crash",
+    "Ready Player One",
+    "The Martian",
+    "Hyperion",
+    "Brave New World",
+    "The Left Hand of Darkness",
+    "The Hitchhiker's Guide to the Galaxy",
+    "Annihilation",
+    "Station Eleven",
+    "The Three-Body Problem",
+    "Dark Matter"
+  ],
+
+  "Young Adult": [
+    "The Hunger Games",
+    "Divergent",
+    "City of Bones",
+    "The Fault in Our Stars",
+    "Looking for Alaska",
+    "The Perks of Being a Wallflower",
+    "The Giver",
+    "Aristotle and Dante Discover the Secrets of the Universe",
+    "Eleanor & Park",
+    "One of Us Is Lying",
+    "The Maze Runner",
+    "Red Queen",
+    "Shadow and Bone",
+    "They Both Die at the End",
+    "The Sun Is Also a Star"
+  ],
+
+  "Biography": [
+    "Steve Jobs",
+    "Einstein",
+    "Alexander Hamilton",
+    "Becoming",
+    "The Diary of Anne Frank",
+    "Churchill",
+    "Leonardo da Vinci",
+    "Elon Musk",
+    "Serena Williams",
+    "The Wright Brothers"
+  ],
+
+  "Memoir": [
+    "Educated",
+    "The Glass Castle",
+    "When Breath Becomes Air",
+    "Wild",
+    "Eat, Pray, Love",
+    "I Am Malala",
+    "Born a Crime",
+    "Becoming",
+    "Night",
+    "Just Kids"
+  ],
+
+  "True Crime": [
+    "In Cold Blood",
+    "I'll Be Gone in the Dark",
+    "Mindhunter",
+    "Helter Skelter",
+    "The Stranger Beside Me",
+    "The Killer Across the Table",
+    "If You Tell",
+    "American Predator",
+    "Columbine",
+    "The Devil in the White City"
+  ],
+
+  "Self-Help": [
+    "Atomic Habits",
+    "The Subtle Art of Not Giving a F*ck",
+    "The Power of Now",
+    "12 Rules for Life",
+    "The Four Agreements",
+    "Think and Grow Rich",
+    "You Are a Badass",
+    "Grit",
+    "Daring Greatly",
+    "The 7 Habits of Highly Effective People"
+  ],
+
+  "History": [
+    "Sapiens",
+    "Guns, Germs, and Steel",
+    "The Silk Roads",
+    "The Rise and Fall of the Third Reich",
+    "The Wright Brothers",
+    "A People's History of the United States",
+    "The History of the Ancient World",
+    "1491",
+    "The Splendid and the Vile",
+    "The Crusades"
+  ]
+}
