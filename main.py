@@ -4,6 +4,13 @@ import logging
 from typing import List, Dict, Any, Optional
 import cv2
 import numpy as np
+import pandas as pd
+import plotly.express as px
+from sklearn.decomposition import PCA
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import MultiLabelBinarizer
+
 
 from src.core.recommender import (
     recommend_by_title,
@@ -118,7 +125,7 @@ st.markdown("""
 st.markdown("## BookFinderAI")
 
 # Tabs
-tabs = st.tabs(["Search by Title", "Search by Author", "Search by Prompt", "Bookshelf OCR"])
+tabs = st.tabs(["Search by Title", "Search by Author", "Search by Prompt", "Bookshelf OCR", "Analytics"])
 
 # TITLE TAB
 with tabs[0]:
@@ -188,6 +195,161 @@ idx = st.session_state.selected_index
 if not books:
     st.info("Search to see results")
     st.stop()
+
+# ANALYTICS TAB
+with tabs[4]:
+    st.markdown("##  Catalog Analytics")
+
+    try:
+        with open(CATALOG_PATH, "r", encoding="utf-8") as f:
+            catalog = json.load(f)
+
+        df = pd.DataFrame.from_dict(catalog, orient="index")
+
+        if df.empty:
+            st.warning("Catalog is empty.")
+        else:
+            # KPI Metrics
+            col1, col2, col3 = st.columns(3)
+            col1.metric("Total Books", len(df))
+            col2.metric("Unique Authors", df["authors"].explode().nunique())
+            col3.metric("Unique Genres", df["genres"].explode().nunique())
+            st.write("---")
+            st.markdown("### Data Quality Analysis")
+
+            missing_desc_pct = (
+                df["description"].isna() |
+                (df["description"].astype(str).str.strip() == "")
+            ).mean() * 100
+
+            # Missing ratings: None or NaN
+            missing_rating_pct = df["rating"].isna().mean() * 100
+
+            # Missing genres: not list OR empty list
+            missing_genres_pct = df["genres"].apply(
+                lambda x: not isinstance(x, list) or len(x) == 0
+            ).mean() * 100
+            q1, q2, q3 = st.columns(3)
+            q1.metric("Missing Descriptions %", f"{missing_desc_pct:.1f}%")
+            q2.metric("Missing Ratings %", f"{missing_rating_pct:.1f}%")
+            q3.metric("Missing Genres %", f"{missing_genres_pct:.1f}%")
+
+            st.write("---")
+
+            # Genre Distribution
+            st.markdown("### Genre Distribution")
+            genre_df = df.explode("genres")
+            genre_counts = genre_df["genres"].value_counts().reset_index()
+            genre_counts.columns = ["Genre", "Count"]
+
+            fig1 = px.bar(
+                genre_counts,
+                x="Genre",
+                y="Count"
+            )
+            st.plotly_chart(fig1, use_container_width=True)
+
+            st.write("---")
+
+            # Top Authors
+            st.markdown("### Top Authors")
+            author_counts = df["authors"].explode().value_counts().head(10).reset_index()
+            author_counts.columns = ["Author", "Count"]
+
+            fig2 = px.bar(
+                author_counts,
+                x="Author",
+                y="Count"
+            )
+            st.plotly_chart(fig2, use_container_width=True)
+
+            st.write("---")
+
+            # PCA Visualization
+            st.markdown("### Semantic Clustering (PCA)")
+
+            try:
+                embeddings = np.load("E:/book_recommender/vectors/embeddings.npy")
+                if len(embeddings) > 2:
+                    pca = PCA(n_components=2)
+                    reduced = pca.fit_transform(embeddings)
+
+                    viz_df = pd.DataFrame({
+                        "x": reduced[:, 0],
+                        "y": reduced[:, 1],
+                        "title": df["title"].values[:len(reduced)],
+                        "genre": df["genres"].apply(lambda x: x[0] if isinstance(x, list) and x else "Unknown").values[:len(reduced)]
+                    })
+
+                    fig3 = px.scatter(
+                        viz_df,
+                        x="x",
+                        y="y",
+                        color="genre",
+                        hover_name="title"
+                    )
+
+                    st.plotly_chart(fig3, use_container_width=True)
+                else:
+                    st.info("Not enough embeddings for PCA visualization.")
+
+            except Exception as e:
+                st.warning(f"PCA visualization failed: {e}")
+
+    except Exception as e:
+        st.error(f"Analytics loading failed: {e}")
+
+    st.write("---")
+    st.markdown("### Genre Correlation Matrix (Top Genres)")
+
+    try:
+        
+        cleaned_genres = df["genres"].apply(
+            lambda x: x if isinstance(x, list) else []
+        )
+
+        
+        all_genres = cleaned_genres.explode()
+        top_genres = all_genres.value_counts().head(8).index.tolist()
+
+        filtered = cleaned_genres.apply(
+            lambda x: [g for g in x if g in top_genres]
+        )
+
+        mlb = MultiLabelBinarizer()
+        genre_matrix = mlb.fit_transform(filtered)
+
+        if genre_matrix.shape[1] > 1:
+            genre_df = pd.DataFrame(
+                genre_matrix,
+                columns=mlb.classes_
+            )
+
+            corr = genre_df.corr()
+
+            fig, ax = plt.subplots(figsize=(12, 10))
+
+            sns.heatmap(
+                corr,
+                cmap="coolwarm",
+                annot=True,
+                fmt=".2f",
+                square=True,
+                linewidths=0.5,
+                ax=ax
+            )
+
+            plt.xticks(rotation=45, ha="right")
+            plt.yticks(rotation=0)
+
+            st.pyplot(fig, use_container_width=True)
+        else:
+            st.info("Not enough genre variety for correlation analysis.")
+
+    except Exception as e:
+        st.warning(f"Genre correlation failed: {e}")
+
+
 
 # IF NO BOOK SELECTED – SHOW FULL GRID
 if idx is None:

@@ -84,6 +84,13 @@ Provides a clean interface with:
 4. FAISS retrieves thematically relevant books  
 5. No API calls or strict title matching are involved
 
+### E. Data Analytics & Catalog Intelligence
+1. Performs Exploratory Data Analysis (EDA) on book metadata
+2. Computes data quality metrics (missing descriptions, ratings, genres)
+3. Analyzes genre distribution and author concentration patterns
+4. Uses PCA dimensionality reduction to visualize semantic clustering of embeddings
+5. Generates a genre correlation matrix to study multi-genre co-occurrence relationships
+
 ---
 
 

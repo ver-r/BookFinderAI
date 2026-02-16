@@ -7,3 +7,4 @@ opencv-python
 pillow
 paddlepaddle
 streamlit
+plotly
