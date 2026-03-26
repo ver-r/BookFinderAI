@@ -43,9 +43,16 @@ If a queried title or author is not found in the local catalog:
 2. The book is added to `catalog.json`  
 3. An embedding is generated and appended to `embeddings.npy`  
 4. FAISS index and ID map are updated  
-5. Future searches automatically include the new book  
+5. Future searches automatically include the new book
 
-### 4. Interactive Streamlit User Interface
+### 4. Data Analytics & Catalog Intelligence
+1. Performs Exploratory Data Analysis (EDA) on book metadata
+2. Computes data quality metrics (missing descriptions, ratings, genres)
+3. Analyzes genre distribution and author concentration patterns
+4. Uses PCA dimensionality reduction to visualize semantic clustering of embeddings
+5. Generates a genre correlation matrix to study multi-genre co-occurrence relationships
+
+### 5. Interactive Streamlit User Interface
 Provides a clean interface with:
 
 - Title search  
@@ -84,12 +91,7 @@ Provides a clean interface with:
 4. FAISS retrieves thematically relevant books  
 5. No API calls or strict title matching are involved
 
-### E. Data Analytics & Catalog Intelligence
-1. Performs Exploratory Data Analysis (EDA) on book metadata
-2. Computes data quality metrics (missing descriptions, ratings, genres)
-3. Analyzes genre distribution and author concentration patterns
-4. Uses PCA dimensionality reduction to visualize semantic clustering of embeddings
-5. Generates a genre correlation matrix to study multi-genre co-occurrence relationships
+
 
 ---
 
